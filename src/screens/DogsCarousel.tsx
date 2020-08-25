@@ -32,10 +32,6 @@ const DogsCarousel = () => {
     [],
   );
 
-  useEffect(() => {
-    console.warn(index);
-  }, [index]);
-
   return (
     <FlatList
       data={localDogs}

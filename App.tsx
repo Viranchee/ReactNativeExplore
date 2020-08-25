@@ -6,14 +6,16 @@ import Home from "./src/screens/Home";
 import ColorPalette from "./src/screens/ColorPalette";
 import Dogs from "./src/screens/Dogs";
 import DogsCarousel from "./src/screens/DogsCarousel";
-import NestedNavigation from "./src/screens/NestedNavigation";
+import NestedNavigation, {
+  NestedNavigationProps,
+} from "./src/screens/NestedNavigation";
 
 export type RootStackParamList = {
   Home: undefined;
   ColorPalette: undefined;
   Dogs: undefined;
   DogsCarousel: undefined;
-  NestedNavigation: { text: string };
+  NestedNavigation: NestedNavigationProps;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();

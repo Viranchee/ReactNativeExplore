@@ -12,24 +12,25 @@ type Props = {
 };
 
 const Home: React.FC<Props> = (props) => {
+  const { navigation } = props;
   return (
     <View style={[styles.container]}>
       <NavButton
         text="Doggos Here"
-        onPress1={async () => props.navigation.navigate("Dogs")}
+        onPress1={async () => navigation.navigate("Dogs")}
       />
       <NavButton
         text="Color Palette Here"
-        onPress1={async () => props.navigation.navigate("ColorPalette")}
+        onPress1={async () => navigation.navigate("ColorPalette")}
       />
       <NavButton
         text="Dogs Carousel Here"
-        onPress1={async () => props.navigation.navigate("DogsCarousel")}
+        onPress1={async () => navigation.navigate("DogsCarousel")}
       />
       <NavButton
         text="Nested Navigation Here"
         onPress1={async () =>
-          props.navigation.navigate("NestedNavigation", { text: "Viranchee" })
+          navigation.navigate("NestedNavigation", { text: "Yo Viranchee Bro" })
         }
       />
       <StatusBar style="auto" />
