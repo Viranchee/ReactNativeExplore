@@ -5,10 +5,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../App";
 
-type HomeScreenNavigationProp = StackNavigationProp<
-  RootStackParamList,
-  "ColorPalette"
->;
+type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList>;
 
 type Props = {
   navigation: HomeScreenNavigationProp;
@@ -24,6 +21,10 @@ const Home = (props: Props) => {
       <NavButton
         text="Color Palette Here"
         onPress1={async () => props.navigation.navigate("ColorPalette")}
+      />
+      <NavButton
+        text="Dogs Carousel Here"
+        onPress1={async () => props.navigation.navigate("DogsCarousel")}
       />
       <StatusBar style="auto" />
     </View>
