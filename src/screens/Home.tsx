@@ -11,7 +11,7 @@ type Props = {
   navigation: HomeScreenNavigationProp;
 };
 
-const Home = (props: Props) => {
+const Home: React.FC<Props> = (props) => {
   return (
     <View style={[styles.container]}>
       <NavButton
@@ -25,6 +25,12 @@ const Home = (props: Props) => {
       <NavButton
         text="Dogs Carousel Here"
         onPress1={async () => props.navigation.navigate("DogsCarousel")}
+      />
+      <NavButton
+        text="Nested Navigation Here"
+        onPress1={async () =>
+          props.navigation.navigate("NestedNavigation", { text: "Viranchee" })
+        }
       />
       <StatusBar style="auto" />
     </View>

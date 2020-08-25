@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { View, Text, StyleSheet } from "react-native";
 
 export type ColorBoxProps = {
@@ -6,7 +6,7 @@ export type ColorBoxProps = {
   hex: string;
 };
 
-const ColorBox = (props: ColorBoxProps) => {
+const ColorBox: FC<ColorBoxProps> = (props) => {
   const { name, hex } = props;
   const boxColor = { backgroundColor: hex };
 

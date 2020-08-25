@@ -1,11 +1,4 @@
-import React, {
-  useState,
-  useRef,
-  useCallback,
-  useEffect,
-  useMemo,
-  memo,
-} from "react";
+import React, { useState, useRef, useCallback, useEffect } from "react";
 import { dogs, Dog } from "../data/dogs";
 import {
   View,
@@ -14,8 +7,6 @@ import {
   Image,
   NativeScrollEvent,
   NativeSyntheticEvent,
-  FlatListProperties,
-  FlatListProps,
 } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 
