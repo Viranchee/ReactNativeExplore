@@ -1,14 +1,17 @@
 import React from "react";
 import { StatusBar } from "expo-status-bar";
-import { View, Text, SafeAreaView, StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../App";
+import { RouteProp } from "@react-navigation/native";
 
-type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList>;
+type Stack = StackNavigationProp<RootStackParamList, "Home">;
+type Route = RouteProp<RootStackParamList, "Home">;
 
 type Props = {
-  navigation: HomeScreenNavigationProp;
+  navigation: Stack;
+  route: Route;
 };
 
 const Home: React.FC<Props> = (props) => {

@@ -1,24 +1,16 @@
 import React, { FC } from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
-import {
-  useRoute,
-  StackRouter,
-  StackRouterOptions,
-  RouteProp,
-} from "@react-navigation/native";
+import { RouteProp } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../App";
 
-type NestedNavStackProp = StackNavigationProp<
-  RootStackParamList,
-  "NestedNavigation"
->;
+type Stack = StackNavigationProp<RootStackParamList, "NestedNavigation">;
 
-type NestedNavRouteProp = RouteProp<RootStackParamList, "NestedNavigation">;
+type Route = RouteProp<RootStackParamList, "NestedNavigation">;
 
 type Props = {
-  navigation: NestedNavStackProp;
-  route: NestedNavRouteProp;
+  navigation: Stack;
+  route: Route;
 };
 
 export interface NestedNavigationProps {

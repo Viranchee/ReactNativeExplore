@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback, useEffect } from "react";
+import React, { useState, useRef, useCallback, useEffect, FC } from "react";
 import { dogs, Dog } from "../data/dogs";
 import {
   View,
@@ -9,10 +9,21 @@ import {
   NativeSyntheticEvent,
 } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackParamList } from "../../App";
+import { RouteProp } from "@react-navigation/native";
+
+type Stack = StackNavigationProp<RootStackParamList, "DogsCarousel">;
+type Route = RouteProp<RootStackParamList, "DogsCarousel">;
+
+type Props = {
+  navigation: Stack;
+  route: Route;
+};
 
 const { width: windowWidth, height: windowHeight } = Dimensions.get("window");
 
-const DogsCarousel = () => {
+const DogsCarousel: FC<Props> = (props) => {
   const localDogs = dogs;
   const [index, setindex] = useState(0);
   const indexRef = useRef(index);

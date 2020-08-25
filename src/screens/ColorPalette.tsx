@@ -1,8 +1,19 @@
-import React from "react";
+import React, { FC } from "react";
 import { StyleSheet, Text, FlatList, View } from "react-native";
 import ColorBox, { ColorBoxProps } from "../components/ColorBox";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackParamList } from "../../App";
+import { RouteProp } from "@react-navigation/native";
 
-const ColorPalette = () => {
+type Stack = StackNavigationProp<RootStackParamList, "ColorPalette">;
+type Route = RouteProp<RootStackParamList, "ColorPalette">;
+
+type Props = {
+  navigation: Stack;
+  route: Route;
+};
+
+const ColorPalette: FC<Props> = (props) => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Here are some boxes of different colors</Text>

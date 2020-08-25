@@ -1,10 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, FC } from "react";
 import { StyleSheet, Text, View, Modal, Image, Dimensions } from "react-native";
 import { FlatList, TouchableOpacity } from "react-native-gesture-handler";
 import DogUI from "../components/DogUI";
 import { Dog, dogs } from "../data/dogs";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackParamList } from "../../App";
+import { RouteProp } from "@react-navigation/native";
 
-export default function Dogs() {
+type Stack = StackNavigationProp<RootStackParamList, "Dogs">;
+type Route = RouteProp<RootStackParamList, "Dogs">;
+
+type Props = {
+  navigation: Stack;
+  route: Route;
+};
+
+const Dogs: FC<Props> = (props) => {
   const [selectedDog, setSelectedDog] = useState<null | Dog>();
   const localDogs = dogs;
   return (
@@ -46,7 +57,7 @@ export default function Dogs() {
       </Modal>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -68,3 +79,5 @@ const styles = StyleSheet.create({
     width: Dimensions.get("window").width * 0.9,
   },
 });
+
+export default Dogs;
