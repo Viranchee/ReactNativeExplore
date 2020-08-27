@@ -7,7 +7,6 @@ import { RouteProp } from "@react-navigation/native";
 
 type Stack = StackNavigationProp<RootStackParamList, "ColorPalette">;
 type Route = RouteProp<RootStackParamList, "ColorPalette">;
-
 type Props = {
   navigation: Stack;
   route: Route;

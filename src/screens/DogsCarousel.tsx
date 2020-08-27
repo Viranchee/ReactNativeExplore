@@ -15,7 +15,6 @@ import { RouteProp } from "@react-navigation/native";
 
 type Stack = StackNavigationProp<RootStackParamList, "DogsCarousel">;
 type Route = RouteProp<RootStackParamList, "DogsCarousel">;
-
 type Props = {
   navigation: Stack;
   route: Route;

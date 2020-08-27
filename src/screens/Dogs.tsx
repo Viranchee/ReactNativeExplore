@@ -9,7 +9,6 @@ import { RouteProp } from "@react-navigation/native";
 
 type Stack = StackNavigationProp<RootStackParamList, "Dogs">;
 type Route = RouteProp<RootStackParamList, "Dogs">;
-
 type Props = {
   navigation: Stack;
   route: Route;

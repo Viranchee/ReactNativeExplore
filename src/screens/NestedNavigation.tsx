@@ -5,9 +5,7 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../App";
 
 type Stack = StackNavigationProp<RootStackParamList, "NestedNavigation">;
-
 type Route = RouteProp<RootStackParamList, "NestedNavigation">;
-
 type Props = {
   navigation: Stack;
   route: Route;

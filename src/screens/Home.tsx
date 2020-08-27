@@ -8,7 +8,6 @@ import { RouteProp } from "@react-navigation/native";
 
 type Stack = StackNavigationProp<RootStackParamList, "Home">;
 type Route = RouteProp<RootStackParamList, "Home">;
-
 type Props = {
   navigation: Stack;
   route: Route;
