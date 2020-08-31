@@ -20,6 +20,10 @@ export type RootStackParamList = {
 
 const Stack = createStackNavigator<RootStackParamList>();
 
+// The above variables are only for TypeScript.
+// This is where my App starts
+// Here is how the architecture of the app is laid out
+// It is all Stacks of screens and nothing else, inside a Navigation Container
 export default function App() {
   return (
     <NavigationContainer>

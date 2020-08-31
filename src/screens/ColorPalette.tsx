@@ -12,6 +12,12 @@ type Props = {
   route: Route;
 };
 
+// A ColorPalette accepts Props defined above and no other special prop
+// It gives out following HTML structure
+// Text, ColorBox and FlatList all wrapped inside a View component
+// Individual styles are defined at bottom of file
+// You can clearly see, FlatList API is 100 times better than UITableViewDataSource and UITableViewDelegate
+// Apple recently updated UICollectionView API in this fashion, can be seen in changes made in 2020
 const ColorPalette: FC<Props> = (props) => {
   return (
     <View style={styles.container}>

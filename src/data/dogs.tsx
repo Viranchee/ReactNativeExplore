@@ -1,3 +1,5 @@
+// This file contains various Dogs to display in the App
+
 export type Dog = { id: number; url: string };
 
 export const dogs: Array<Dog> = [

@@ -6,6 +6,10 @@ export type ColorBoxProps = {
   hex: string;
 };
 
+// A Color Box accepts ColorBoxProps, defined above
+// It gives out following HTML structure:
+// A Text wrapped in the View component
+// With appropriate StyleSheet, defined below
 const ColorBox: FC<ColorBoxProps> = (props) => {
   const { name, hex } = props;
   const boxColor = { backgroundColor: hex };

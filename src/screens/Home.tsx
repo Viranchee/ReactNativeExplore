@@ -13,6 +13,10 @@ type Props = {
   route: Route;
 };
 
+// This is Home Screen, it takes no other props, only the Default ones
+// It houses all the navigation logic here.
+// React-Navigation library is used
+// This screen can go to any of the screens wrapped in a NavButton
 const Home: React.FC<Props> = (props) => {
   const { navigation } = props;
   return (
@@ -32,7 +36,9 @@ const Home: React.FC<Props> = (props) => {
       <NavButton
         text="Nested Navigation Here"
         onPress1={async () =>
-          navigation.navigate("NestedNavigation", { text: "Yo Viranchee Bro" })
+          navigation.navigate("NestedNavigation", {
+            text: "-I passed this TEXT-",
+          })
         }
       />
       <StatusBar style="auto" />
@@ -42,6 +48,9 @@ const Home: React.FC<Props> = (props) => {
 
 type NavButtonProps = { text: string; onPress1: () => void };
 
+// A NavButton takes a string and an onPress1 event
+// It runs onPress1 whenever it's onPress event is triggered
+// It displays the text prop as regular Text which is clickable because of Touchable Opacity
 const NavButton = (props: NavButtonProps) => {
   const { text, onPress1 } = props;
   return (

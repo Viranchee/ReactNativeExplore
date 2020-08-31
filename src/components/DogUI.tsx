@@ -2,6 +2,12 @@ import React from "react";
 import { TouchableOpacity, Dimensions, Image, StyleSheet } from "react-native";
 import { Dog } from "../data/dogs";
 
+// A DogUI accepts a Dog and a selection
+// It gives out following HTML structure:
+// An Image wrapped in TouchableOpacity
+// The image displays the Dog's photo with accessibility
+// The TouchapleOpacity makes it perform actions onPress
+// It's StyleSheet is defined below
 export default function DogUI(props: {
   doggo: Dog;
   selection: (dog: Dog) => void;

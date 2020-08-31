@@ -14,6 +14,12 @@ type Props = {
   route: Route;
 };
 
+// A Dog Display screen
+// The Dogs are hard coded hence they do not take Dogs as part of Props
+// The default ReactNative Props are constructed and passed
+// A useState hook is used to update any values on runtime
+// This hook allows to select a dog and there is logic to see it in a modal below
+// It returns a FlatList and a Modal component wrapped in a View component
 const Dogs: FC<Props> = (props) => {
   const [selectedDog, setSelectedDog] = useState<null | Dog>();
   const localDogs = dogs;

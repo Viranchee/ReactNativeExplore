@@ -22,6 +22,13 @@ type Props = {
 
 const { width: windowWidth, height: windowHeight } = Dimensions.get("window");
 
+// A DogCarousel, similar to DogUI takes no Dogs as props, as the data is hardcoded
+// A useState and useRef hook is used to keep track of index
+// UseRef is like a pointer, to a reference type
+// An onScroll callback is defined on setting the index if certain conditions are met
+// This is to avoid populating JSX with unnecessary data and keep it readable and glanceable
+// It returns a FlatList in custom configuration. Please read it.
+// It is so much straight forward to set up a custom FlatList than it is to set up UICollectionView
 const DogsCarousel: FC<Props> = (props) => {
   const localDogs = dogs;
   const [index, setindex] = useState(0);

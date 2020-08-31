@@ -15,6 +15,8 @@ export interface NestedNavigationProps {
   text: string;
 }
 
+// This screen takes only a string prop along with Stack and Route
+// It displays 3 buttons which can navigate to other screens
 const NestedNavigation: FC<Props> = (props) => {
   const { route, navigation } = props;
   const text = route.params.text;
@@ -23,10 +25,12 @@ const NestedNavigation: FC<Props> = (props) => {
     <View style={styles.container}>
       <Text style={styles.greetingText}>Hello {route.params.text}</Text>
       <View style={styles.forwardButton}>
-        <Text style={styles.forwardButtonText}>Move Forwards</Text>
+        <Text style={styles.forwardButtonText}>
+          Move Forwards, click any of the below
+        </Text>
       </View>
       <Button
-        title="View Dogs screen from here"
+        title="View Dogs screen from HERE"
         onPress={(_) => {
           navigation.navigate("Dogs");
         }}
