@@ -34,6 +34,10 @@ const Home: React.FC<Props> = (props) => {
         onPress1={async () => navigation.navigate("DogsCarousel")}
       />
       <NavButton
+        text="TONEs"
+        onPress1={async () => navigation.navigate("ToneUI")}
+      />
+      <NavButton
         text="Nested Navigation Here"
         onPress1={async () =>
           navigation.navigate("NestedNavigation", {

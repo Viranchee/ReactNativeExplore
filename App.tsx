@@ -9,12 +9,14 @@ import DogsCarousel from "./src/screens/DogsCarousel";
 import NestedNavigation, {
   NestedNavigationProps,
 } from "./src/screens/NestedNavigation";
+import ToneUI from "./src/screens/ToneUI";
 
 export type RootStackParamList = {
   Home: undefined;
   ColorPalette: undefined;
   Dogs: undefined;
   DogsCarousel: undefined;
+  ToneUI: undefined;
   NestedNavigation: NestedNavigationProps;
 };
 
@@ -32,6 +34,7 @@ export default function App() {
         <Stack.Screen name="ColorPalette" component={ColorPalette} />
         <Stack.Screen name="Dogs" component={Dogs} />
         <Stack.Screen name="DogsCarousel" component={DogsCarousel} />
+        <Stack.Screen name="ToneUI" component={ToneUI} />
         <Stack.Screen name="NestedNavigation" component={NestedNavigation} />
       </Stack.Navigator>
     </NavigationContainer>
