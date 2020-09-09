@@ -83,10 +83,15 @@ const ToneUI: React.FC<Props> = (props) => {
   return (
     <View style={styles.container}>
       <Button title={playing ? "Stop" : "Play"} onPress={handleHat} />
-      <View style={styles.borderBox}>
-        {tracks.map((track, index) => {
+      <FlatList
+        data={tracks}
+        style={styles.borderBox}
+        keyExtractor={(_, index) => {
+          return `track-${index}`;
+        }}
+        renderItem={({ item: track }) => {
           return (
-            <View key={`track-${index}`} style={styles.trackBox}>
+            <View style={styles.trackBox}>
               <View style={styles.trackName}>
                 <Text>{track.name}</Text>
               </View>
@@ -96,11 +101,15 @@ const ToneUI: React.FC<Props> = (props) => {
                   return <ToneStepBox index={val.index} stepIndex={val.item} />;
                 }}
                 horizontal
+                scrollEnabled={false}
+                keyExtractor={(_, index) => {
+                  return index.toString();
+                }}
               />
             </View>
           );
-        })}
-      </View>
+        }}
+      />
     </View>
   );
 };
@@ -127,24 +136,24 @@ const styles = StyleSheet.create({
   },
   borderBox: {
     borderWidth: 1,
-    borderColor: "#f00",
+    borderColor: "red",
     padding: 10,
     marginTop: 20,
   },
   trackBox: {
     borderWidth: 1,
-    borderColor: "#ff0",
+    borderColor: "purple",
     alignItems: "center",
     display: "flex",
   },
   trackName: {
     borderWidth: 1,
-    borderColor: "#0ff",
+    borderColor: "green",
     width: 100,
   },
   trackStep: {
     borderWidth: 1,
-    borderColor: "#00f",
+    borderColor: "yellow",
     height: 20,
     width: 15,
     margin: 2,
