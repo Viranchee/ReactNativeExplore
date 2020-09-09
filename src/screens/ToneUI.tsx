@@ -20,7 +20,7 @@ console.log("---");
 // const synth = new Tone.PolySynth().toMaster();
 
 const trackIndex = ["c0", "d0", "e0"];
-const tracks = ["Synth", "Synth"];
+const allTracks = ["Synth", "Clap", "Hat", "Kick"];
 // Tone.Transport.bpm.value = 100;
 
 const generateSteps = () => {
@@ -31,7 +31,7 @@ const generateSteps = () => {
   return steps;
 };
 
-const initialSteps = tracks.map((t) => ({
+const initialSteps = allTracks.map((t) => ({
   name: t,
   steps: generateSteps(),
 }));
@@ -51,34 +51,35 @@ const ToneUI: React.FC<Props> = (props) => {
     }
   }, [playing]);
 
-  // React.useEffect(() => {
-  //   Tone.Transport.cancel();
-  //   Tone.Transport.scheduleRepeat(function (time) {
-  //     tracks.forEach((track, index) => {
-  //       let chord =
-  //         stepIndex.current < 7 ? ["c4", "d#4", "g4"] : ["a#3", "d4", "g4"];
-  //       synth.triggerAttackRelease(chord, 0.5);
-  //     });
+  React.useEffect(() => {
+    // Tone.Transport.cancel();
+    // Tone.Transport.scheduleRepeat(function (time) {
+    // tracks.forEach((track, index) => {
+    // let chord =
+    // stepIndex.current < 7 ? ["c4", "d#4", "g4"] : ["a#3", "d4", "g4"];
+    // synth.triggerAttackRelease(chord, 0.5);
+    // });
 
-  //     stepIndex.current = stepIndex.current > 14 ? 0 : stepIndex.current + 1;
-  //   }, "16n");
-  // }, [tracks]);
+    // stepIndex.current = stepIndex.current > 14 ? 0 : stepIndex.current + 1;
+    // }, "16n");
+    console.log("tracks changed");
+  }, [tracks]);
 
   function handleHat() {
-    // setPlaying((playing) => !playing);
-    console.log("Tapped");
+    setPlaying((playing) => !playing);
   }
 
-  // const updateStep = React.useCallback(
-  //   function (trackIndex, stepIndex) {
-  //     let newTracks = [...tracks];
+  const updateStep = React.useCallback(
+    function (trackIndex: number, stepIndex: number) {
+      let newTracks = [...tracks];
 
-  //     newTracks[trackIndex].steps[stepIndex] =
-  //       newTracks[trackIndex].steps[stepIndex] === 0 ? 1 : 0;
-  //     setTracks(newTracks);
-  //   },
-  //   [tracks, setTracks],
-  // );
+      // console.log(newTracks[trackIndex].st);
+      newTracks[trackIndex].steps[stepIndex] =
+        newTracks[trackIndex].steps[stepIndex] === 0 ? 1 : 0;
+      setTracks(newTracks);
+    },
+    [tracks, setTracks],
+  );
 
   return (
     <View style={styles.container}>
@@ -86,24 +87,37 @@ const ToneUI: React.FC<Props> = (props) => {
       <FlatList
         data={tracks}
         style={styles.borderBox}
+        scrollEnabled={false}
         keyExtractor={(_, index) => {
           return `track-${index}`;
         }}
-        renderItem={({ item: track }) => {
+        renderItem={({ item: track, index }) => {
           return (
             <View style={styles.trackBox}>
-              <View style={styles.trackName}>
-                <Text>{track.name}</Text>
-              </View>
               <FlatList
                 data={track.steps}
-                renderItem={(val) => {
-                  return <ToneStepBox index={val.index} stepIndex={val.item} />;
-                }}
                 horizontal
                 scrollEnabled={false}
                 keyExtractor={(_, index) => {
                   return index.toString();
+                }}
+                ListHeaderComponent={() => {
+                  return (
+                    <View style={styles.trackName}>
+                      <Text>{track.name}</Text>
+                    </View>
+                  );
+                }}
+                renderItem={(val) => {
+                  return (
+                    <ToneStepBox
+                      index={val.index}
+                      stepIndex={val.item}
+                      onPress={() => {
+                        updateStep(index, val.index);
+                      }}
+                    />
+                  );
                 }}
               />
             </View>
@@ -114,17 +128,13 @@ const ToneUI: React.FC<Props> = (props) => {
   );
 };
 
-const ToneStepBox: React.FC<{ index: number; stepIndex: number }> = ({
-  index,
-  stepIndex,
-}) => {
+const ToneStepBox: React.FC<{
+  index: number;
+  stepIndex: number;
+  onPress: Function;
+}> = ({ index, stepIndex, onPress }) => {
   return (
-    <TouchableOpacity
-      key={`step-${index}-${stepIndex}`}
-      onPress={() => {
-        // updateStep(index, stepIndex);
-        console.log("TrackStep Pressed");
-      }}>
+    <TouchableOpacity key={`step-${index}-${stepIndex}`} onPress={onPress}>
       <View style={[styles.trackStep, { backgroundColor: "gray" }]}></View>
     </TouchableOpacity>
   );
@@ -135,25 +145,23 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   borderBox: {
-    borderWidth: 1,
-    borderColor: "red",
     padding: 10,
     marginTop: 20,
   },
   trackBox: {
-    borderWidth: 1,
-    borderColor: "purple",
-    alignItems: "center",
+    marginVertical: 5,
     display: "flex",
+    flexWrap: "wrap",
   },
   trackName: {
-    borderWidth: 1,
-    borderColor: "green",
-    width: 100,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    width: 50,
   },
   trackStep: {
-    borderWidth: 1,
-    borderColor: "yellow",
     height: 20,
     width: 15,
     margin: 2,
