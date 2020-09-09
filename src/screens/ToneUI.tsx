@@ -1,7 +1,7 @@
 import Tone from "tone";
 import React from "react";
 import { Button, StyleSheet, View, Text } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { TouchableOpacity, FlatList } from "react-native-gesture-handler";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../App";
 import { RouteProp } from "@react-navigation/native";
@@ -90,27 +90,34 @@ const ToneUI: React.FC<Props> = (props) => {
               <View style={styles.trackName}>
                 <Text>{track.name}</Text>
               </View>
-              {track.steps.map((s, stepIndex) => {
-                return (
-                  <TouchableOpacity
-                    key={`step-${index}-${stepIndex}`}
-                    onPress={() => {
-                      // updateStep(index, stepIndex);
-                      console.log("TrackStep Pressed");
-                    }}>
-                    <View
-                      style={[
-                        styles.trackStep,
-                        { backgroundColor: s === 0 ? "gray" : "green" },
-                      ]}></View>
-                  </TouchableOpacity>
-                );
-              })}
+              <FlatList
+                data={track.steps}
+                renderItem={(val) => {
+                  return <ToneStepBox index={val.index} stepIndex={val.item} />;
+                }}
+                horizontal
+              />
             </View>
           );
         })}
       </View>
     </View>
+  );
+};
+
+const ToneStepBox: React.FC<{ index: number; stepIndex: number }> = ({
+  index,
+  stepIndex,
+}) => {
+  return (
+    <TouchableOpacity
+      key={`step-${index}-${stepIndex}`}
+      onPress={() => {
+        // updateStep(index, stepIndex);
+        console.log("TrackStep Pressed");
+      }}>
+      <View style={[styles.trackStep, { backgroundColor: "gray" }]}></View>
+    </TouchableOpacity>
   );
 };
 
@@ -125,13 +132,19 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   trackBox: {
+    borderWidth: 1,
+    borderColor: "#ff0",
     alignItems: "center",
     display: "flex",
   },
   trackName: {
+    borderWidth: 1,
+    borderColor: "#0ff",
     width: 100,
   },
   trackStep: {
+    borderWidth: 1,
+    borderColor: "#00f",
     height: 20,
     width: 15,
     margin: 2,
