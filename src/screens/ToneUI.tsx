@@ -113,7 +113,7 @@ const ToneUI: React.FC<Props> = (props) => {
                     <ToneStepBox
                       index={val.index}
                       stepIndex={val.item}
-                      onPress={() => {
+                      pressCallback={() => {
                         updateStep(index, val.index);
                       }}
                     />
@@ -131,10 +131,14 @@ const ToneUI: React.FC<Props> = (props) => {
 const ToneStepBox: React.FC<{
   index: number;
   stepIndex: number;
-  onPress: Function;
-}> = ({ index, stepIndex, onPress }) => {
+  pressCallback: Function;
+}> = ({ index, stepIndex, pressCallback }) => {
   return (
-    <TouchableOpacity key={`step-${index}-${stepIndex}`} onPress={onPress}>
+    <TouchableOpacity
+      key={`step-${index}-${stepIndex}`}
+      onPress={(_) => {
+        pressCallback();
+      }}>
       <View style={[styles.trackStep, { backgroundColor: "gray" }]}></View>
     </TouchableOpacity>
   );
