@@ -1,10 +1,49 @@
-import Tone from "tone";
 import React from "react";
+import { Audio } from "expo-av";
 import { Button, StyleSheet, View, Text } from "react-native";
 import { TouchableOpacity, FlatList } from "react-native-gesture-handler";
 import { StackNavigationProp } from "@react-navigation/stack";
+// TS Prop Drilling
 import { RootStackParamList } from "../../App";
 import { RouteProp } from "@react-navigation/native";
+
+// can be put in different file
+async function playHat() {
+  Audio.Sound.createAsync(require("../../assets/sounds/hat.wav"), {
+    shouldPlay: true,
+  });
+}
+async function playClap() {
+  Audio.Sound.createAsync(require("../../assets/sounds/clap.wav"), {
+    shouldPlay: true,
+  });
+}
+async function playKick() {
+  Audio.Sound.createAsync(require("../../assets/sounds/kick.wav"), {
+    shouldPlay: true,
+  });
+}
+// export this function
+async function playSound(file: number = 1) {
+  console.log(file);
+  switch (file) {
+    case 0:
+      await playHat();
+      break;
+
+    case 1:
+      await playClap();
+      break;
+
+    case 2:
+      await playKick();
+      break;
+
+    case 3:
+      await playHat();
+      break;
+  }
+}
 
 type Stack = StackNavigationProp<RootStackParamList, "ToneUI">;
 type Route = RouteProp<RootStackParamList, "ToneUI">;
@@ -13,15 +52,7 @@ type Props = {
   route: Route;
 };
 
-console.log("___");
-console.log("Tone is:", Tone);
-console.log("---");
-
-// const synth = new Tone.PolySynth().toMaster();
-
-const trackIndex = ["c0", "d0", "e0"];
 const allTracks = ["Synth", "Clap", "Hat", "Kick"];
-// Tone.Transport.bpm.value = 100;
 
 const generateSteps = () => {
   let steps = [];
@@ -39,31 +70,16 @@ const initialSteps = allTracks.map((t) => ({
 const ToneUI: React.FC<Props> = (props) => {
   let [playing, setPlaying] = React.useState(false);
   let [tracks, setTracks] = React.useState(initialSteps);
-  let stepIndex = React.useRef(0);
 
   React.useEffect(() => {
     if (playing) {
-      // Tone.Transport.start();
       console.log("Start");
     } else {
-      // Tone.Transport.stop();
       console.log("Stop");
     }
   }, [playing]);
 
-  React.useEffect(() => {
-    // Tone.Transport.cancel();
-    // Tone.Transport.scheduleRepeat(function (time) {
-    // tracks.forEach((track, index) => {
-    // let chord =
-    // stepIndex.current < 7 ? ["c4", "d#4", "g4"] : ["a#3", "d4", "g4"];
-    // synth.triggerAttackRelease(chord, 0.5);
-    // });
-
-    // stepIndex.current = stepIndex.current > 14 ? 0 : stepIndex.current + 1;
-    // }, "16n");
-    console.log("tracks changed");
-  }, [tracks]);
+  React.useEffect(() => {}, [tracks]);
 
   function handleHat() {
     setPlaying((playing) => !playing);
@@ -72,8 +88,6 @@ const ToneUI: React.FC<Props> = (props) => {
   const updateStep = React.useCallback(
     function (trackIndex: number, stepIndex: number) {
       let newTracks = [...tracks];
-
-      // console.log(newTracks[trackIndex].st);
       newTracks[trackIndex].steps[stepIndex] =
         newTracks[trackIndex].steps[stepIndex] === 0 ? 1 : 0;
       setTracks(newTracks);
@@ -115,6 +129,7 @@ const ToneUI: React.FC<Props> = (props) => {
                       stepIndex={val.item}
                       pressCallback={() => {
                         updateStep(index, val.index);
+                        playSound(index);
                       }}
                     />
                   );
@@ -163,6 +178,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "row",
     flexWrap: "wrap",
+    margin: "auto",
     width: 50,
   },
   trackStep: {
