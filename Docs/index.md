@@ -6,7 +6,7 @@
 #### Getting Started
 - [Getting Started](GettingStarted.md)
 
-#### Basic Apps
+#### Demonstrations
 - [Image Viewer](ImageViewer.md)
 
 #### Edge Cases
