@@ -1,10 +1,14 @@
-### Let's build an Image Viewer
+## Let's build an Image Viewer
 
 An Array of images are displayed on the user's screen
 They are scrollable
 
 For this, we need React Native's these components:
-- Image : The Image component, simply
+
+### Image
+
+ The Image component, simply
+
 ``` html
 <Image
   source={{ uri: doggo.url }}
@@ -14,7 +18,9 @@ For this, we need React Native's these components:
   accessibilityLabel="dog"
 />
 ```
+
 It's corresponding style
+
 ``` json
   dogImage: {
     height: Dimensions.get("window").width / 2,
@@ -23,7 +29,10 @@ It's corresponding style
   },
 ```
 
-- TouchableOpacity : For detecting touches
+### TouchableOpacity
+
+For detecting touches
+
 ``` html
 <TouchableOpacity
   key={doggo.id}
@@ -34,7 +43,10 @@ It's corresponding style
 </TouchableOpacity>
 ```
 
-- FlatList : This is similar to TableView, CollectionView and has scrolling behaviour
+### FlatList
+
+This is similar to TableView, CollectionView and has scrolling behaviour
+
 ``` html
 <FlatList
   ListHeaderComponent={
@@ -53,15 +65,20 @@ It's corresponding style
 />
 ```
 
-- View : To wrap the FlatList 
+### View
+
+To wrap the FlatList
+
 ``` html
 <View style={styles.container}>
   <FlatListDefinedAbove/>
 </View>
 ```
 
+### Modal
+
 To make it more interactive, i.e. when user taps the Image, let's display a modal with that image.
-For that, we need a Modal component
+
 ``` html
 <Modal transparent={true} visible={!!selectedDog} animationType="fade">
   {selectedDog ? (
@@ -71,6 +88,7 @@ For that, we need a Modal component
   ) : null}
 </Modal>
 ```
+
 and it's style:
 
 ``` json
@@ -93,7 +111,9 @@ For the modal's content, let's render an image
   accessibilityLabel="Dog, Full Screen"
 />
 ```
+
 and it's style
+
 ``` json
 modalImage: {
   height: Dimensions.get("window").width * 0.9,
@@ -102,6 +122,7 @@ modalImage: {
 ```
 
 And let's wrap the image inside a TouchableOpacity, so whenever user taps, the modal gets dismissed
+
 ``` html
 <TouchableOpacity onPress={() => setSelectedDog(null)}>
   <ImageDescribedAbove/>
