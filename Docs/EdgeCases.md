@@ -1,4 +1,4 @@
-# Here comes the meat
+# Edge Cases discovered and Issues faced
 
 While making Tones, I failed countless times
 
