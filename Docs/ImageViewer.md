@@ -5,7 +5,7 @@ They are scrollable
 
 For this, we need React Native's these components:
 - Image : The Image component, simply
-``` js
+``` html
 <Image
   source={{ uri: doggo.url }}
   style={styles.dogImage}
@@ -24,7 +24,7 @@ It's corresponding style
 ```
 
 - TouchableOpacity : For detecting touches
-``` js
+``` html
 <TouchableOpacity
   key={doggo.id}
   onPress={() => {
@@ -35,7 +35,7 @@ It's corresponding style
 ```
 
 - FlatList : This is similar to TableView, CollectionView and has scrolling behaviour
-``` js
+``` html
 <FlatList
   ListHeaderComponent={
     <Text style={styles.text}>Here are some dog photos</Text>
@@ -54,7 +54,7 @@ It's corresponding style
 ```
 
 - View : To wrap the FlatList 
-``` js
+``` html
 <View style={styles.container}>
   <FlatListDefinedAbove/>
 </View>
@@ -62,7 +62,7 @@ It's corresponding style
 
 To make it more interactive, i.e. when user taps the Image, let's display a modal with that image.
 For that, we need a Modal component
-``` js
+``` html
 <Modal transparent={true} visible={!!selectedDog} animationType="fade">
   {selectedDog ? (
     <View style={styles.modal}>
@@ -84,7 +84,7 @@ modal: {
 
 For the modal's content, let's render an image
 
-``` js
+``` html
 <Image
   source={{ uri: selectedDog.url }}
   style={styles.modalImage}
@@ -102,7 +102,7 @@ modalImage: {
 ```
 
 And let's wrap the image inside a TouchableOpacity, so whenever user taps, the modal gets dismissed
-``` js
+``` html
 <TouchableOpacity onPress={() => setSelectedDog(null)}>
   <ImageDescribedAbove/>
 </TouchableOpacity>
