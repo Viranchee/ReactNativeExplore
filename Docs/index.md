@@ -7,7 +7,6 @@
 #### Getting Started
 
 - [Getting Started](GettingStarted.md)
-- [Using Typescript](UsingTypescript.md)
 
 #### Demonstrations
 
@@ -17,3 +16,4 @@
 #### Edge Cases
 
 - [Edge Cases](EdgeCases.md)
+- [Using Typescript](UsingTypescript.md)
